@@ -50,7 +50,7 @@ You may construct new variables and apply transformations to existing variables 
 Of course you may ask your peers (or me) for help, but you should not work together.\section{Document outline}
 Prepare a document in which you develop a single test of your conjecture. 
 Articulate the rationale behind your test and measurement choices, and discuss and tabulate your results. 
-The document should include source code that will allow a reader to replicate you analysis using the supplied data.
+The document should include (perhaps as an appendix) source code (in either R or Stata) that will allow a reader to replicate you analysis using the supplied data.\footnote{Email me if you want to use something other that R or Stata.}
 The document should include the sections outlined below.\subsection{Research design}
 Carefully motivate and explain the design of your test. 
 Enumerate and justify each choice that you make regarding  variable measurement and research design. 
@@ -58,25 +58,24 @@ Enumerate and justify each choice that you make regarding  variable measurement 
 
 \subsection{Results}
 \begin{itemize}
-	\item A detailed description of the variables used in your analysis. 
-	\item A simple table that clearly presents your results. Descriptive statistics are not necessary.
-	\item Discuss of results as they relate to your conjecture.
+    \item A detailed description of the variables used in your analysis. 
+    \item A simple table that clearly presents your results. Descriptive statistics are not necessary.
+    \item Discuss of results as they relate to your conjecture.
 \end{itemize}\section{In-class discussion}
-Copies of the document you prepare will be distributed to the entire class Wednesday evening of the due date. 
-In that Monday's class, you will be expected to discuss your test and findings (no slides or other materials are necessary). 
-%In the absence of participation, I will cold call students.
-You should read all materials distributed Wednesday evening, and be prepared to critique your classmates' work.\section{Data}
+Copies of the document you prepare (as well as the source code you used) should be emailed to me on Sunday, April 19.
+In that class on Monday, April 20, you will be expected to discuss your test and findings (no slides or other materials are necessary).     
+\section{Data}
 The data set comprises 10,000 firm-years from 1992 to 2010. 
 Most of the data come directly from \citet{Armstrong:2013hs}. 
 Let me know if you have any questions.
 
 \begin{table}[h]
 \caption{Variable list} \label{tab:vars}
-	\begin{tabular}{ll}
-\textbf{	Variable} & \textbf{Description }\\
-	\hline
-		firmid & Unique firm identifier \\		fyear	 &	Fiscal year \\		ffic12	 &Fama-French 12-industry group  \\		ffic48 &	Fama-French 48-industry group \\		aaer 	&	Indicates that an SEC AAER found accounting fraud or 	misrepresentation occurred at the firm during the year \\		restate	&	Indicates financial results for that year were restated \\		restate\_hlm	& Indicates that financial results for that year were restated due to fraud, 	misrepresentation, or investigation by SEC or PCAOB \\		dacc\_mj & Discretionary accruals from the modified-Jones (1991) model \\		dacc\_dd  &	Discretionary accruals from Dechow-Dichev (2002) model \\		dacc\_m & Discretionary accruals from the McNichols (2002) model \\		dacc\_lr &	Discretionary accruals from the Larcker-Richardson (2004) model \\		num\_meet	& Number of board meetings during year \\		num\_dir & 	Number of directors on the board \\		num\_dir\_aud & Number of directors on the audit committee \\		num\_exp  & Number of financial experts on the board \\		num\_exp\_aud & 	Number of financial experts on the audit committee \\
-\end{tabular}	
+    \begin{tabular}{ll}
+\textbf{    Variable} & \textbf{Description } \\
+    \hline
+        firmid & Unique firm identifier \\        fyear     &    Fiscal year \\        ffic12     &Fama-French 12-industry group  \\        ffic48     &    Fama-French 48-industry group \\        aaer       &    Indicates that an SEC AAER found accounting fraud or     misrepresentation occurred at the firm during the year \\        restate    &    Indicates financial results for that year were restated \\        restate\_hlm    & Indicates that financial results for that year were restated due to fraud,     misrepresentation, or investigation by SEC or PCAOB \\        dacc\_mj & Discretionary accruals from the modified-Jones (1991) model \\        dacc\_dd  &    Discretionary accruals from Dechow-Dichev (2002) model \\        dacc\_m & Discretionary accruals from the McNichols (2002) model \\        dacc\_lr &    Discretionary accruals from the Larcker-Richardson (2004) model \\        num\_meet    & Number of board meetings during year \\        num\_dir &     Number of directors on the board \\        num\_dir\_aud & Number of directors on the audit committee \\        num\_exp  & Number of financial experts on the board \\        num\_exp\_aud &     Number of financial experts on the audit committee \\
+\end{tabular}    
 \end{table}
 \bibliography{dba}
 
