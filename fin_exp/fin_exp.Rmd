@@ -1,0 +1,50 @@
+---
+title: "Financial expertise and misreporting"
+author: "Ian Gow"
+date: "April 5, 2015"
+output: pdf_document
+---
+
+## Research design
+
+I conjecture that financial expertise of the board leads to less misreporting.
+My research design is the *best*.
+I regress a restatement indicator (*restate*) on the 
+number of financial experts on the board (*num_exp*)
+I include industry fixed effects using the Fama-French 48-industry classification (*ffic48*).
+
+Here is the code to load the data.
+```{r get_data}
+library("foreign")
+fin_exp <- read.dta("fin_exp.dta")
+```
+
+To keep things simple, I don't transform my variables in any way.
+
+The regression equation is:
+
+$$\textit{restate}_{it} = \textit{num\_exp}_{it} \cdot \beta + \sum_{k \in \{1,\dots, 48\}} \textit{ind}_{ik} \cdot \gamma_k+ \epsilon_{it}$$
+
+where $\textit{restate}_{it}$ is an indicator for whether firm $i$
+restated financials related to fiscal year $t$, 
+$\textit{num\_exp}_{it}$ is the number of financial experts on the board, 
+and $\textit{ind}_{ik}$ is an indicator for firm $i$ being a member of industry $k$.
+
+Here is the code for my regression:
+```{r run_reg}
+fm <- lm(restate ~ num_exp + factor(ffic48), data=fin_exp)
+```
+
+## Results
+
+The results of my analysis are provided in Table 1 below (estimates industry fixed effects omitted for brevity). 
+While the sign of the coefficient on \textit{num\_exp} is negative, 
+I do not find a statistically significant association between financial expertise and restatements.
+Perhaps my analysis is too simple.
+
+```{r tabulate, message=FALSE, results='asis', echo=FALSE}
+# install.packages("texreg")
+library("texreg")
+texreg(fm, omit.coef = "ffic48", label = "table:reg",
+       caption = "Results of regressing \\emph{restate} on financial expertise")
+```
