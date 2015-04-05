@@ -44,7 +44,7 @@ The following definitions come from \citet{Pearl:2009vo}, which is a bit more ma
 \begin{definition}[$d$-separation, block, collider]
 A path $p$ is said to be \emph{$d$-separated} (or \emph{blocked}) by a set of nodes $Z$ if and only if
 \begin{enumerate}
-	\item $p$ contains a chain $i \rightarrow m \rightarrow j$ or a fork $i \leftarrow m \leftarrow j$ such that the middle node $m$ is in $Z$, or
+	\item $p$ contains a chain $i \rightarrow m \rightarrow j$ or a fork $i \leftarrow m \rightarrow j$ such that the middle node $m$ is in $Z$, or
 	\item $p$ contains an inverted fork (or \emph{collider}) $i \rightarrow m \leftarrow j$ such that the middle node $m$ is not in $Z$ and such that no descendant of $m$ is in $Z$
 \end{enumerate}
 \end{definition}
@@ -116,8 +116,8 @@ Which of the following sets block all back-door paths?
 		\item $\{ Z_2, Z_3 \}$
 		\item $\{ Z_3 \}$
 		\item $\{ W_3 \}$
-For the sets that do not block all back-door paths, identify which paths are unblocked.
 	\end{itemize}
+For the sets that do not block all back-door paths, identify which paths are unblocked.
 \end{question}
 
 \bibliography{dba}
