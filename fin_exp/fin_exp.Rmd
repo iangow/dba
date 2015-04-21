@@ -17,6 +17,8 @@ Here is the code to load the data.
 ```{r get_data}
 library("foreign")
 fin_exp <- read.dta("fin_exp.dta")
+fin_exp$ffic48 <- as.factor(fin_exp$ffic48)
+fin_exp$fyear <- as.factor(fin_exp$fyear)
 ```
 
 To keep things simple, I don't transform my variables in any way.
@@ -47,4 +49,60 @@ Perhaps my analysis is too simple.
 library("texreg")
 texreg(fm, omit.coef = "ffic48", label = "table:reg",
        caption = "Results of regressing \\emph{restate} on financial expertise")
+```
+
+```{r some_functions, include=FALSE}
+# Simple regressions ----
+getFitted <- function(list) {
+  temp <- list()
+  for (i in 1:length(list)) {
+    temp[[i]] <- list[[i]][[1]]
+  }
+  return(temp)
+}
+
+# Get standard errors
+getSEs <- function(a.list) {
+  temp <- list()
+  for (i in 1:length(a.list)) {
+    temp[[i]] <- a.list[[i]][[2]][,2]
+  }
+  return(temp)
+}
+
+# Get p-values
+getPs <- function(a.list) {
+  temp <- list()
+  for (i in 1:length(a.list)) {
+    temp[[i]] <- a.list[[i]][[2]][,4]
+  }
+  return(temp)
+}
+```
+
+## Matt's approach
+```{r matt, warning=FALSE, message=FALSE}
+fin_exp$aaer_or_hlm <- fin_exp$aaer | fin_exp$restate_hlm
+source("http://iangow.me/code/cluster2.R")
+
+lhs.vars <- c("restate", "restate_hlm", "aaer", "aaer_or_hlm")
+
+fit.model <- function(lhs) {
+    formula <- paste(lhs, "~ num_exp_aud + fyear + ffic48")
+    fm <- glm(formula, data=fin_exp, family = binomial(link = "probit"))
+    fm.se <- coeftest.cluster(fin_exp, fm, cluster1="firmid")
+    return(list(fm, fm.se))
+}
+
+fms <- lapply(lhs.vars, fit.model)
+
+
+```{r matt_out, results="asis", message=FALSE}
+library("stargazer")
+stargazer(getFitted(fms), omit=c("^fyear", "^ffic"), 
+          title = "Matt's regressions",
+          se = getSEs(fms), p = getPs(fms), header = FALSE,
+          keep.stat=c("n", "adj.rsq"))
+
+
 ```
