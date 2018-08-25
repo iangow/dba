@@ -20,12 +20,12 @@
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
+\newtheorem{answer}{Answer}
 
 \theoremstyle{question}
 \newtheorem{question}{Question}
 
-
-\title[HBS 4403: Management Control and Performance Measurement]{HBS 4403: Problem Set 2}
+\title{Causal Diagrams}
 
 \author{Ian D. Gow}
 %\email{igow@hbs.edu}
@@ -108,8 +108,19 @@ How the quantities $P(y|x)$ map into estimates of causal effects is not critical
 Identify \emph{each} of the back-door paths into $X$ from $Y$ in graph $G$ shown in Figure \ref{fig:causal}. (\emph{Hint:} There are four, one of which is $X \leftarrow Z_3 \rightarrow Y$.)
 \end{question}
 
+\begin{answer}
+The four back-door paths are:
+\begin{enumerate}
+\item $X \leftarrow Z_3 \rightarrow Y$ 
+\item $X \leftarrow Z_3 \leftarrow Z_2 \rightarrow W_2 \rightarrow Y$
+\item $X \leftarrow W_1 \leftarrow Z_1 \rightarrow Z_3 \rightarrow Y$ 
+\item $X \leftarrow W_1 \leftarrow Z_1 \rightarrow Z_3 \leftarrow Z_2 \rightarrow W_2 \rightarrow Y$ 	
+\end{enumerate}
+	
+\end{answer}
+
 \begin{question}
-Which of the following sets block all back-door paths?
+Which of the following sets satisfies the back-door criterion?
 	\begin{itemize}
 		\item $\{ W_1, Z_3 \}$
 		\item $\{ W_2, Z_3 \}$
@@ -119,6 +130,21 @@ Which of the following sets block all back-door paths?
 	\end{itemize}
 For the sets that do not block all back-door paths, identify which paths are unblocked.
 \end{question}
+
+\begin{answer}
+First $W_3$ is a descendant of $X$, so $W_3$ cannot be a member of any set that satisfies the back-door criterion.
+
+Note that $Z_3$ is the middle node on the fork that \emph{is} the first back-door path.
+So $Z_3$ needs to be an element of any set that blocks all back-door paths.
+
+Note that $Z_3$ is on fork on the first path and on a chain on the second and third paths, so any set of variables including $Z_3$ will block those paths.
+However, $Z_3$ is a collider (on an inverse fork) on the fourth path. 
+So a set of variables including $Z_3$ will unblock the fourth path and another variable will be needed to block it.
+Both $W_1$ and $W_2$ are on chains in the fourth path, so they will block that back-door path if they are included.
+And $Z_2$ is on a fork on that back-door path, so it will block that path if included.
+
+So  $\{ W_1, Z_3 \}$, $\{ W_2, Z_3 \}$ and $\{ Z_2, Z_3 \}$ will contain no descendants of $X$ and block all back-door paths, so each of these sets satisfies the back-door criterion.
+\end{answer}
 
 \bibliography{dba}
 
